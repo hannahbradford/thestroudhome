@@ -1,1 +1,7 @@
-
+body {
+  background: #F7F3EC;
+  color: #2E2A26;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding-top: 100px;
+}
