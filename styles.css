@@ -1,7 +1,113 @@
 body {
-  background: #F7F3EC;
-  color: #2E2A26;
-  font-family: Georgia, serif;
-  text-align: center;
-  padding-top: 100px;
+
+    background: #F7F3EC;
+
+    color: #2E2A26;
+
+    font-family: Georgia, serif;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+    text-align: center;
+}
+
+.container {
+
+    max-width: 700px;
+
+    padding: 40px;
+}
+
+.star {
+
+    font-size: 28px;
+
+    color: #B49A67;
+
+    margin-bottom: 20px;
+}
+
+.eyebrow {
+
+    letter-spacing: 6px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    color: #5A654D;
+
+    margin-bottom: 20px;
+}
+
+h1 {
+
+    font-weight: 400;
+
+    font-size: clamp(48px, 8vw, 90px);
+
+    margin: 0;
+}
+
+.tagline {
+
+    font-size: 26px;
+
+    margin-top: 25px;
+
+    font-style: italic;
+}
+
+.progress-container {
+
+    width: 320px;
+
+    max-width: 100%;
+
+    height: 10px;
+
+    background: #ddd4c6;
+
+    border-radius: 9999px;
+
+    margin: 30px auto;
+}
+
+.progress-bar {
+
+    width: 42%;
+
+    height: 100%;
+
+    background: #4E5A42;
+
+    border-radius: 9999px;
+}
+
+.status {
+
+    color: #6A6258;
+
+    font-size: 18px;
+}
+
+.footer {
+
+    margin-top: 60px;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #888;
 }
