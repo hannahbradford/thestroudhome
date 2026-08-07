@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Forever & Ever, Agrim</title>
+  <title>Forever and Ever, Agrim</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -12,110 +12,107 @@
       --gold-light: #f0d98a;
       --brown: #5c3d2e;
       --text: #3a2a1a;
-      --spoken: #9b7b4a;
-      --highlight-bg: rgba(201,168,76,0.18);
+      --muted: #9b7b4a;
+      --hannah: #c2547a;
+      --tim: #3d6fa8;
+      --both-bg: #f5f0e8;
+      --highlight-bg: rgba(201,168,76,0.2);
       --highlight-color: #7a4f1e;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--cream);
-      font-family: 'Lato', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-    }
+    body { background: var(--cream); font-family: 'Lato', sans-serif; color: var(--text); min-height: 100vh; }
 
-    /* PASSWORD OVERLAY */
+    /* PASSWORD GATE */
     #gate {
-      position: fixed; inset: 0;
-      background: var(--cream);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 999; gap: 24px;
-      padding: 32px;
+      position: fixed; inset: 0; background: var(--cream);
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; z-index: 999; gap: 20px; padding: 32px;
     }
     #gate h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brown); text-align: center; }
-    #gate p { color: var(--spoken); font-size: 0.95rem; }
+    #gate p { color: var(--muted); font-size: 0.95rem; }
+    .divider { width: 60px; height: 1px; background: var(--gold-light); }
     #gate-input {
-      padding: 12px 20px; border: 1px solid var(--gold);
-      border-radius: 4px; font-size: 1rem;
-      background: white; color: var(--text);
-      text-align: center; width: 220px;
-      outline: none;
+      padding: 12px 20px; border: 1px solid var(--gold); border-radius: 4px;
+      font-size: 1rem; background: white; color: var(--text);
+      text-align: center; width: 220px; outline: none;
     }
     #gate-input:focus { border-color: var(--brown); }
     #gate-btn {
-      padding: 12px 32px; background: var(--gold);
-      color: white; border: none; border-radius: 4px;
-      font-size: 1rem; cursor: pointer;
-      font-family: 'Lato', sans-serif; letter-spacing: 0.05em;
-      transition: background 150ms;
+      padding: 12px 32px; background: var(--gold); color: white;
+      border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;
+      font-family: 'Lato', sans-serif; letter-spacing: 0.05em; transition: background 150ms;
     }
     #gate-btn:hover { background: var(--brown); }
     #gate-error { color: #c0392b; font-size: 0.85rem; min-height: 1em; }
-    .divider { width: 60px; height: 1px; background: var(--gold-light); }
 
-    /* MAIN PAGE */
-    #main { display: none; max-width: 700px; margin: 0 auto; padding: 48px 24px 80px; }
-    .page-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem; color: var(--brown);
-      text-align: center; margin-bottom: 4px;
+    /* MAIN */
+    #main { display: none; max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+    .page-subtitle { text-align: center; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--brown); text-align: center; margin-bottom: 32px; }
+
+    /* LEGEND (duet only) */
+    #legend {
+      display: none; justify-content: center; gap: 20px;
+      margin-bottom: 24px; flex-wrap: wrap;
     }
-    .page-subtitle {
-      text-align: center; color: var(--spoken);
-      font-size: 0.9rem; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 32px;
-    }
-    .version-toggle {
-      display: flex; justify-content: center;
-      gap: 12px; margin-bottom: 40px;
-    }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .legend-dot.hannah { background: var(--hannah); }
+    .legend-dot.tim { background: var(--tim); }
+    .legend-dot.both { background: var(--gold); }
+
+    /* TOGGLE */
+    .version-toggle { display: flex; justify-content: center; gap: 12px; margin-bottom: 32px; }
     .v-btn {
-      padding: 8px 24px; border-radius: 20px;
-      border: 1px solid var(--gold); background: white;
-      color: var(--brown); cursor: pointer; font-size: 0.85rem;
+      padding: 8px 24px; border-radius: 20px; border: 1px solid var(--gold);
+      background: white; color: var(--brown); cursor: pointer; font-size: 0.85rem;
       transition: all 150ms; font-family: 'Lato', sans-serif;
     }
-    .v-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
+    .v-btn.active { background: var(--gold); color: white; }
 
     /* AUDIO */
     .audio-wrap { text-align: center; margin-bottom: 40px; }
-    audio { width: 100%; max-width: 400px; accent-color: var(--gold); }
-    .audio-note { font-size: 0.75rem; color: var(--spoken); margin-top: 8px; }
+    audio { width: 100%; max-width: 420px; accent-color: var(--gold); }
+    .audio-note { font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
 
     /* LYRICS */
     .lyrics-block { display: none; }
     .lyrics-block.active { display: block; }
+
+    .verse-section { margin-top: 36px; }
+    .verse-section:first-child { margin-top: 0; }
     .section-label {
-      font-size: 0.7rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-      margin: 32px 0 10px;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--gold-light);
     }
+
+    /* LYRIC LINES */
     .lyric-line {
-      font-size: 1.1rem; line-height: 1.9;
-      padding: 2px 8px; border-radius: 3px;
-      transition: background 200ms, color 200ms;
-      cursor: default;
+      font-size: 1.05rem; line-height: 1.95; padding: 3px 10px;
+      border-radius: 3px; transition: background 200ms, color 200ms;
+      display: flex; align-items: baseline; gap: 10px;
     }
-    .lyric-line.spoken {
-      font-style: italic; color: var(--spoken);
-      font-size: 1rem;
+    .lyric-line.spoken { font-style: italic; color: var(--muted); font-size: 0.95rem; }
+    .lyric-line.active { background: var(--highlight-bg); color: var(--highlight-color); font-weight: 700; }
+    .lyric-line.past { opacity: 0.4; }
+
+    /* SINGER BADGES (duet only) */
+    .singer-badge {
+      display: inline-block; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 10px; white-space: nowrap;
+      flex-shrink: 0; margin-top: 4px;
     }
-    .lyric-line.both { font-weight: 700; }
-    .lyric-line.him { color: #6b4c8a; }
-    .lyric-line.her { color: var(--brown); }
-    .lyric-line.active {
-      background: var(--highlight-bg);
-      color: var(--highlight-color);
-      font-weight: 700;
-    }
-    .lyric-line.past { opacity: 0.45; }
+    .badge-hannah { background: #fceef4; color: var(--hannah); }
+    .badge-tim    { background: #e8f0fb; color: var(--tim); }
+    .badge-both   { background: #f5f0e0; color: #7a6020; }
+
+    .line-text { flex: 1; }
 
     .footer-note {
-      text-align: center; margin-top: 56px;
-      font-size: 0.85rem; color: var(--gold);
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
+      text-align: center; margin-top: 56px; font-size: 0.85rem;
+      color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic;
     }
   </style>
 </head>
@@ -124,9 +121,9 @@
 <!-- PASSWORD GATE -->
 <div id="gate">
   <div class="divider"></div>
-  <h1>Forever & Ever, Agrim </h1>
+  <h1>Forever and Ever, Agrim</h1>
   <p>Enter the password to continue</p>
-  <input id="gate-input" type="password" placeholder="password" />
+  <input id="gate-input" type="password" placeholder="password"/>
   <button id="gate-btn">Enter</button>
   <div id="gate-error"></div>
   <div class="divider"></div>
@@ -135,177 +132,192 @@
 <!-- MAIN PAGE -->
 <div id="main">
   <p class="page-subtitle">thestroudhome.com</p>
-  <h1 class="page-title">Forever & Ever, Agrim </h1>
+  <h1 class="page-title">Forever and Ever, Agrim</h1>
 
   <div class="version-toggle">
-    <button class="v-btn active" onclick="setVersion('solo')">🎙️ Solo</button>
-    <button class="v-btn" onclick="setVersion('duet')">🎤🎤 Duet</button>
+    <button class="v-btn active" onclick="setVersion('solo', this)">Solo</button>
+    <button class="v-btn" onclick="setVersion('duet', this)">Duet</button>
+  </div>
+
+  <div id="legend">
+    <div class="legend-item"><div class="legend-dot hannah"></div> Hannah</div>
+    <div class="legend-item"><div class="legend-dot tim"></div> Tim</div>
+    <div class="legend-item"><div class="legend-dot both"></div> Both</div>
   </div>
 
   <div class="audio-wrap">
-    <!-- ⬇️ REPLACE 'agrim.mp3' with the actual path to your audio file -->
-    <audio id="player" controls src="agrim.mp3"></audio>
-    <p class="audio-note">🎵 Press play and watch the words light up</p>
+    <audio id="player" controls src="agrim-solo.mp3"></audio>
+    <p class="audio-note">Press play and watch the words light up</p>
   </div>
 
-  <!-- SOLO VERSION -->
   <div id="lyrics-solo" class="lyrics-block active"></div>
-
-  <!-- DUET VERSION -->
   <div id="lyrics-duet" class="lyrics-block"></div>
 
-  <p class="footer-note">"I more than love you! :)" </p>
+  <p class="footer-note">"I more than love you!"</p>
 </div>
 
 <script>
   // Code Generated by Sidekick is for learning and experimentation purposes only.
 
-  // ─── PASSWORD ────────────────────────────────────────────────
+  // --- PASSWORD --- change 'agrim2025' to whatever you want
   const PASSWORD = 'agrim2026';
-
   document.getElementById('gate-btn').addEventListener('click', checkPassword);
-  document.getElementById('gate-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') checkPassword();
-  });
+  document.getElementById('gate-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
   function checkPassword() {
-    const val = document.getElementById('gate-input').value.trim();
-    if (val === PASSWORD) {
+    if (document.getElementById('gate-input').value.trim() === PASSWORD) {
       document.getElementById('gate').style.display = 'none';
       document.getElementById('main').style.display = 'block';
     } else {
-      document.getElementById('gate-error').textContent = 'Incorrect password — try again';
+      document.getElementById('gate-error').textContent = 'Incorrect password - try again';
       document.getElementById('gate-input').value = '';
     }
   }
 
-  // ─── LYRICS DATA ─────────────────────────────────────────────
-  // ⏱️ 'time' = seconds into the song when this line starts
-  // Adjust these numbers after you record your audio!
+  // --- LYRICS DATA ---
+  // 'section' adds a labeled verse break above the line
+  // 'singer' (duet only): 'hannah', 'tim', or 'both'
+  // 'time' = seconds into the audio — adjust these once you have your recording!
 
   const soloLyrics = [
-    { time: 1,   text: '"This one\'s for my Grimbus"',                        type: 'spoken' },
-    { time: 4,   text: '"My Sweet Baby Grim - this is just the beginning"',   type: 'spoken' },
-    { time: 15,  text: 'You may call me Grimbus Grombus' },
-    { time: 18,  text: 'Your Grim or your Sweet Baby Girl' },
-    { time: 22,  text: 'Grimmie Mungbus Bungus' },
-    { time: 25,  text: 'Every single name means the world' },
-    { time: 30,  text: 'With our Puhhup laid out on the sofa' },
-    { time: 33,  text: 'Ticklin\' pink bellies all night' },
-    { time: 37,  text: 'Watchin\' our shows with your head on my shoulder' },
-    { time: 40,  text: 'Baby, everything feels so right' },
-    { time: 46,  text: 'Oh baby, I\'m gonna love you forever',               type: 'chorus' },
-    { time: 50,  text: 'Forever and ever, agrim' },
-    { time: 53,  text: 'As long as ole grims sit and talk about their hunger' },
-    { time: 57,  text: 'As long as ole grims sit and talk about ole grims' },
-    { time: 61,  text: 'If you wonder how long I\'ll be faithful' },
-    { time: 65,  text: 'I\'ll be happy to tell you again' },
-    { time: 68,  text: 'I\'m gonna love you forever and ever' },
-    { time: 72,  text: 'Forever and ever, agrim' },
-    { time: 82,  text: '"We swiped right on a Sunday on Tinder"',             type: 'spoken' },
-    { time: 86,  text: '"Two philosophy majors in love"',                     type: 'spoken' },
-    { time: 90,  text: '"We skipped Capishe, Puerta, and Oku"',               type: 'spoken' },
-    { time: 94,  text: '\'Cause we know what we like, me and you"',           type: 'spoken' },
-    { time: 102, text: 'They say brunch is the best way to start things' },
-    { time: 105, text: 'West Kept Secret, you know that\'s our place' },
-    { time: 109, text: 'Chicken strips and french fries at the Pawtisierie' },
-    { time: 113, text: 'With that big smile spread across your face' },
-    { time: 117, text: 'Charlotte\'s the home where it all began' },
-    { time: 120, text: 'Back to each other, back home again' },
-    { time: 124, text: 'We\'re ridin\' our bikes through the sweetest of cities' },
-    { time: 128, text: 'Honey, I\'d say our life\'s pretty great 🚲' },
-    { time: 134, text: 'Oh baby, I\'m gonna love you forever',               type: 'chorus' },
-    { time: 138, text: 'Forever and ever, agrim' },
-    { time: 141, text: 'As long as ole grims sit and talk about their hunger' },
-    { time: 145, text: 'As long as ole grims sit and talk about ole grims' },
-    { time: 149, text: 'If you wonder how long I\'ll be faithful' },
-    { time: 153, text: 'Well, just listen to how this song ends' },
-    { time: 157, text: 'I\'m gonna love you forever and ever' },
-    { time: 161, text: 'Forever and ever, agrim' },
-    { time: 168, text: 'I\'m gonna love you forever and ever...' },
-    { time: 172, text: 'Forever and ever, forever and ever...' },
-    { time: 176, text: 'Honey, Grim, Grimbus...' },
-    { time: 180, text: 'Forever and ever... agrim' },
+    { section: 'Spoken Intro', time: 1,   text: '"This one\'s for my Grimbus"',                      type: 'spoken' },
+    {                           time: 4,   text: '"My Sweet Baby Grim - I hope you enjoy my remix"', type: 'spoken' },
+    { section: 'Verse 1',      time: 15,  text: 'You may call me Grimbus Grombus' },
+    {                           time: 18,  text: 'Your Grim or your Sweet Baby Girl' },
+    {                           time: 22,  text: 'Grimmie Mungbus Bungus' },
+    {                           time: 25,  text: 'Every single name means the world' },
+    {                           time: 30,  text: 'With our Puhhup laid out on the sofa' },
+    {                           time: 33,  text: 'Ticklin pink bellies all night' },
+    {                           time: 37,  text: 'Watchin our shows with your head on my shoulder' },
+    {                           time: 40,  text: 'Baby, everything feels so right' },
+    { section: 'Chorus',       time: 46,  text: 'Oh baby, I\'m gonna love you forever' },
+    {                           time: 50,  text: 'Forever and ever, agrim' },
+    {                           time: 53,  text: 'As long as ole grims sit and talk about their hunger' },
+    {                           time: 57,  text: 'As long as ole grims sit and talk about ole grims' },
+    {                           time: 61,  text: 'If you wonder how long I\'ll be faithful' },
+    {                           time: 65,  text: 'I\'ll be happy to tell you again' },
+    {                           time: 68,  text: 'I\'m gonna love you forever and ever' },
+    {                           time: 72,  text: 'Forever and ever, agrim' },
+    { section: 'Spoken',       time: 82,  text: '"We swiped right on a Sunday on Tinder"',            type: 'spoken' },
+    {                           time: 86,  text: '"Two philosophy majors in love"',                    type: 'spoken' },
+    {                           time: 90,  text: '"We skipped Capishe, Puerta, and Oku"',              type: 'spoken' },
+    {                           time: 94,  text: '"Cause we know what we like, me and you"',           type: 'spoken' },
+    { section: 'Verse 2',      time: 102, text: 'They say brunch is the best way to start things' },
+    {                           time: 105, text: 'West Kept Secret, you know that\'s our place' },
+    {                           time: 109, text: 'Chicken strips and french fries at the Pawtisierie' },
+    {                           time: 113, text: 'With that big smile spread across your face' },
+    {                           time: 117, text: 'Charlotte\'s the home where it all began' },
+    {                           time: 120, text: 'Back to each other, back home again' },
+    {                           time: 124, text: 'We\'re ridin our bikes through the sweetest of cities' },
+    {                           time: 128, text: 'Honey, I\'d say our life\'s pretty great' },
+    { section: 'Chorus',       time: 134, text: 'Oh baby, I\'m gonna love you forever' },
+    {                           time: 138, text: 'Forever and ever, agrim' },
+    {                           time: 141, text: 'As long as ole grims sit and talk about their hunger' },
+    {                           time: 145, text: 'As long as ole grims sit and talk about ole grims' },
+    {                           time: 149, text: 'If you wonder how long I\'ll be faithful' },
+    {                           time: 153, text: 'Well, just listen to how this song ends' },
+    {                           time: 157, text: 'I\'m gonna love you forever and ever' },
+    {                           time: 161, text: 'Forever and ever, agrim' },
+    { section: 'Outro',        time: 168, text: 'I\'m gonna love you forever and ever...' },
+    {                           time: 172, text: 'Forever and ever, forever and ever...' },
+    {                           time: 176, text: 'Honey, Grim, Grimbus...' },
+    {                           time: 180, text: 'Forever and ever... agrim' },
   ];
 
   const duetLyrics = [
-    { time: 1,   text: 'HER: "This one\'s for my Grimbus"',                  type: 'spoken her' },
-    { time: 4,   text: 'HIM: "My Sweet Baby Grim - this is just the beginning"', type: 'spoken him' },
-    { time: 15,  text: 'You may call me Grimbus Grombus',                    type: 'her' },
-    { time: 18,  text: 'Your Grim or your Sweet Baby Girl',                  type: 'her' },
-    { time: 22,  text: 'Grimmie Mungbus Bungus',                             type: 'her' },
-    { time: 25,  text: 'Every single name means the world',                  type: 'her' },
-    { time: 30,  text: 'With our Puhhup laid out on the sofa',               type: 'him' },
-    { time: 33,  text: 'Ticklin\' pink bellies all night',                   type: 'him' },
-    { time: 37,  text: 'Watchin\' our shows with your head on my shoulder',  type: 'him' },
-    { time: 40,  text: 'Baby, everything feels so right',                    type: 'him' },
-    { time: 46,  text: 'Oh baby, I\'m gonna love you forever',               type: 'both' },
-    { time: 50,  text: 'Forever and ever, agrim',                            type: 'both' },
-    { time: 53,  text: 'As long as ole grims sit and talk about their hunger', type: 'both' },
-    { time: 57,  text: 'As long as ole grims sit and talk about ole grims',  type: 'both' },
-    { time: 61,  text: 'If you wonder how long I\'ll be faithful',           type: 'both' },
-    { time: 65,  text: 'I\'ll be happy to tell you again',                   type: 'both' },
-    { time: 68,  text: 'I\'m gonna love you forever and ever',               type: 'both' },
-    { time: 72,  text: 'Forever and ever, agrim',                            type: 'both' },
-    { time: 82,  text: 'HER: "We swiped right on a Sunday on Tinder"',       type: 'spoken her' },
-    { time: 86,  text: 'HIM: "Two philosophy majors in love"',               type: 'spoken him' },
-    { time: 90,  text: 'HER: "We skipped Capishe, Puerta, and Oku"',         type: 'spoken her' },
-    { time: 94,  text: 'HIM: "\'Cause we know what we like, me and you"',    type: 'spoken him' },
-    { time: 102, text: 'They say brunch is the best way to start things',    type: 'him' },
-    { time: 105, text: 'West Kept Secret, you know that\'s our place',       type: 'him' },
-    { time: 109, text: 'Chicken strips and french fries at the Pawtisierie', type: 'him' },
-    { time: 113, text: 'With that big smile spread across your face',        type: 'him' },
-    { time: 117, text: 'Charlotte\'s the home where it all began',           type: 'her' },
-    { time: 120, text: 'Back to each other, back home again',                type: 'her' },
-    { time: 124, text: 'We\'re ridin\' our bikes through the sweetest of cities', type: 'her' },
-    { time: 128, text: 'Honey, I\'d say our life\'s pretty great 🚲',        type: 'her' },
-    { time: 134, text: 'Oh baby, I\'m gonna love you forever',               type: 'both' },
-    { time: 138, text: 'Forever and ever, agrim',                            type: 'both' },
-    { time: 141, text: 'As long as ole grims sit and talk about their hunger', type: 'both' },
-    { time: 145, text: 'As long as ole grims sit and talk about ole grims',  type: 'both' },
-    { time: 149, text: 'If you wonder how long I\'ll be faithful',           type: 'both' },
-    { time: 153, text: 'Well, just listen to how this song ends',            type: 'both' },
-    { time: 157, text: 'I\'m gonna love you forever and ever',               type: 'both' },
-    { time: 161, text: 'Forever and ever, agrim',                            type: 'both' },
-    { time: 168, text: 'HER: "I\'m gonna love you forever and ever..."',     type: 'spoken her' },
-    { time: 172, text: 'HIM: "Forever and ever, forever and ever..."',       type: 'spoken him' },
-    { time: 176, text: 'BOTH: "Honey, Grim, Grimbus..."',                    type: 'both' },
-    { time: 180, text: 'BOTH: "Forever and ever... agrim"',            type: 'both' },
+    { section: 'Spoken Intro', time: 1,   text: '"This one\'s for my Grimbus"',                      type: 'spoken', singer: 'hannah' },
+    {                           time: 4,   text: '"My Sweet Baby Grim - lets do this"', type: 'spoken', singer: 'tim' },
+    { section: 'Verse 1',      time: 15,  text: 'You may call me Grimbus Grombus',                   singer: 'hannah' },
+    {                           time: 18,  text: 'Your Grim or your Sweet Baby Girl',                 singer: 'hannah' },
+    {                           time: 22,  text: 'Grimmie Mungbus Bungus',                            singer: 'hannah' },
+    {                           time: 25,  text: 'Every single name means the world',                 singer: 'hannah' },
+    {                           time: 30,  text: 'With our Puhhup laid out on the sofa',              singer: 'tim' },
+    {                           time: 33,  text: 'Ticklin pink bellies all night',                    singer: 'tim' },
+    {                           time: 37,  text: 'Watchin our shows with your head on my shoulder',   singer: 'tim' },
+    {                           time: 40,  text: 'Baby, everything feels so right',                   singer: 'tim' },
+    { section: 'Chorus',       time: 46,  text: 'Oh baby, I\'m gonna love you forever',              singer: 'both' },
+    {                           time: 50,  text: 'Forever and ever, agrim',                           singer: 'both' },
+    {                           time: 53,  text: 'As long as ole grims sit and talk about their hunger', singer: 'both' },
+    {                           time: 57,  text: 'As long as ole grims sit and talk about ole grims', singer: 'both' },
+    {                           time: 61,  text: 'If you wonder how long I\'ll be faithful',          singer: 'both' },
+    {                           time: 65,  text: 'I\'ll be happy to tell you again',                  singer: 'both' },
+    {                           time: 68,  text: 'I\'m gonna love you forever and ever',              singer: 'both' },
+    {                           time: 72,  text: 'Forever and ever, agrim',                           singer: 'both' },
+    { section: 'Spoken',       time: 82,  text: '"We swiped right on a Sunday on Tinder"',           type: 'spoken', singer: 'hannah' },
+    {                           time: 86,  text: '"Two philosophy majors in love"',                   type: 'spoken', singer: 'tim' },
+    {                           time: 90,  text: '"We skipped Capishe, Puerta, and Oku"',             type: 'spoken', singer: 'hannah' },
+    {                           time: 94,  text: '"Cause we know what we like, me and you"',          type: 'spoken', singer: 'tim' },
+    { section: 'Verse 2',      time: 102, text: 'They say brunch is the best way to start things',   singer: 'tim' },
+    {                           time: 105, text: 'West Kept Secret, you know that\'s our place',      singer: 'tim' },
+    {                           time: 109, text: 'Chicken strips and french fries at the Pawtisierie', singer: 'tim' },
+    {                           time: 113, text: 'With that big smile spread across your face',       singer: 'tim' },
+    {                           time: 117, text: 'Charlotte\'s the home where it all began',          singer: 'hannah' },
+    {                           time: 120, text: 'Back to each other, back home again',               singer: 'hannah' },
+    {                           time: 124, text: 'We\'re ridin our bikes through the sweetest of cities', singer: 'hannah' },
+    {                           time: 128, text: 'Honey, I\'d say our life\'s pretty great',          singer: 'hannah' },
+    { section: 'Chorus',       time: 134, text: 'Oh baby, I\'m gonna love you forever',              singer: 'both' },
+    {                           time: 138, text: 'Forever and ever, agrim',                           singer: 'both' },
+    {                           time: 141, text: 'As long as ole grims sit and talk about their hunger', singer: 'both' },
+    {                           time: 145, text: 'As long as ole grims sit and talk about ole grims', singer: 'both' },
+    {                           time: 149, text: 'If you wonder how long I\'ll be faithful',          singer: 'both' },
+    {                           time: 153, text: 'Well, just listen to how this song ends',           singer: 'both' },
+    {                           time: 157, text: 'I\'m gonna love you forever and ever',              singer: 'both' },
+    {                           time: 161, text: 'Forever and ever, agrim',                           singer: 'both' },
+    { section: 'Outro',        time: 168, text: 'I\'m gonna love you forever and ever...',            singer: 'hannah' },
+    {                           time: 172, text: 'Forever and ever, forever and ever...',             singer: 'tim' },
+    {                           time: 176, text: 'Honey, Grim, Grimbus...',                           singer: 'both' },
+    {                           time: 180, text: 'Forever and ever... agrim',                         singer: 'both' },
   ];
 
-  // ─── BUILD LYRIC HTML ─────────────────────────────────────────
-  function buildLyrics(data, containerId) {
+  // --- BUILD LYRIC HTML ---
+  function buildLyrics(data, containerId, showBadge) {
     const container = document.getElementById(containerId);
+    let currentSection = null;
+    let sectionDiv = null;
+
     data.forEach((line, i) => {
+      if (line.section && line.section !== currentSection) {
+        currentSection = line.section;
+        sectionDiv = document.createElement('div');
+        sectionDiv.className = 'verse-section';
+        const label = document.createElement('div');
+        label.className = 'section-label';
+        label.textContent = line.section;
+        sectionDiv.appendChild(label);
+        container.appendChild(sectionDiv);
+      }
+
       const div = document.createElement('div');
-      div.className = 'lyric-line';
+      div.className = 'lyric-line' + (line.type === 'spoken' ? ' spoken' : '');
       div.dataset.index = i;
-      const t = (line.type || '');
-      if (t.includes('spoken')) div.classList.add('spoken');
-      if (t.includes('both'))   div.classList.add('both');
-      if (t.includes('him') && !t.includes('spoken')) div.classList.add('him');
-      if (t.includes('her') && !t.includes('spoken')) div.classList.add('her');
-      div.textContent = line.text;
-      container.appendChild(div);
+
+      if (showBadge && line.singer) {
+        const badge = document.createElement('span');
+        const label = line.singer === 'hannah' ? 'Hannah' : line.singer === 'tim' ? 'Tim' : 'Both';
+        badge.className = `singer-badge badge-${line.singer}`;
+        badge.textContent = label;
+        div.appendChild(badge);
+      }
+
+      const textSpan = document.createElement('span');
+      textSpan.className = 'line-text';
+      textSpan.textContent = line.text;
+      div.appendChild(textSpan);
+
+      (sectionDiv || container).appendChild(div);
     });
   }
-  buildLyrics(soloLyrics, 'lyrics-solo');
-  buildLyrics(duetLyrics, 'lyrics-duet');
 
-  // ─── KARAOKE SYNC ─────────────────────────────────────────────
+  buildLyrics(soloLyrics, 'lyrics-solo', false);
+  buildLyrics(duetLyrics, 'lyrics-duet', true);
+
+  // --- KARAOKE SYNC ---
   let currentVersion = 'solo';
   const audio = document.getElementById('player');
 
-  function getLyrics() {
-    return currentVersion === 'solo' ? soloLyrics : duetLyrics;
-  }
-  function getLines() {
-    return document.querySelectorAll(`#lyrics-${currentVersion} .lyric-line`);
-  }
-
   audio.addEventListener('timeupdate', () => {
     const t = audio.currentTime;
-    const lyrics = getLyrics();
-    const lines = getLines();
+    const lyrics = currentVersion === 'solo' ? soloLyrics : duetLyrics;
+    const lines = document.querySelectorAll(`#lyrics-${currentVersion} .lyric-line`);
     lines.forEach((el, i) => {
       const start = lyrics[i].time;
       const end = lyrics[i + 1] ? lyrics[i + 1].time : Infinity;
@@ -319,15 +331,19 @@
     });
   });
 
-  // ─── VERSION TOGGLE ───────────────────────────────────────────
-  function setVersion(v) {
+  // --- VERSION TOGGLE ---
+  function setVersion(v, btn) {
     currentVersion = v;
     document.querySelectorAll('.lyrics-block').forEach(b => b.classList.remove('active'));
     document.getElementById(`lyrics-${v}`).classList.add('active');
     document.querySelectorAll('.v-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('legend').style.display = v === 'duet' ? 'flex' : 'none';
+    audio.src = v === 'solo' ? 'agrim-solo.mp3' : 'agrim-duet.mp3';
+    audio.load();
     audio.currentTime = 0;
   }
 </script>
 </body>
 </html>
+
