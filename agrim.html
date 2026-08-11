@@ -238,49 +238,222 @@
     {                           time: 180, text: 'Forever and ever... agrim' },
   ];
 
-  const duetLyrics = [
-    { section: 'Spoken Intro', time: 1,   text: '"This one\'s for my Grimbus"',                      type: 'spoken', singer: 'hannah' },
-    {                           time: 4,   text: '"My Sweet Baby Grim - lets do this"', type: 'spoken', singer: 'tim' },
-    { section: 'Verse 1',      time: 15,  text: 'You may call me Grimbus Grombus',                   singer: 'hannah' },
-    {                           time: 18,  text: 'Your Grim or your Sweet Baby Girl',                 singer: 'hannah' },
-    {                           time: 22,  text: 'Grimmie Mungbus Bungus',                            singer: 'hannah' },
-    {                           time: 25,  text: 'Every single name means the world',                 singer: 'hannah' },
-    {                           time: 30,  text: 'With our Puhhup laid out on the sofa',              singer: 'tim' },
-    {                           time: 33,  text: 'Ticklin pink bellies all night',                    singer: 'tim' },
-    {                           time: 37,  text: 'Watchin our shows with your head on my shoulder',   singer: 'tim' },
-    {                           time: 40,  text: 'Baby, everything feels so right',                   singer: 'tim' },
-    { section: 'Chorus',       time: 46,  text: 'Oh baby, I\'m gonna love you forever',              singer: 'both' },
-    {                           time: 50,  text: 'Forever and ever, agrim',                           singer: 'both' },
-    {                           time: 53,  text: 'As long as ole grims sit and talk about their hunger', singer: 'both' },
-    {                           time: 57,  text: 'As long as ole grims sit and talk about ole grims', singer: 'both' },
-    {                           time: 61,  text: 'If you wonder how long we\'ll be together',          singer: 'both' },
-    {                           time: 65,  text: 'Just take a look at your *point to pink belly*',                  singer: 'both' },
-    {                           time: 68,  text: 'We will be together forever and ever',              singer: 'both' },
-    {                           time: 72,  text: 'Forever and ever, agrim',                           singer: 'both' },
-    { section: 'Verse 2',      time: 102, text: 'They say brunch is the best way to start things',   singer: 'tim' },
-    {                           time: 105, text: 'West Kept Secret, you know that\'s our place',      singer: 'tim' },
-    {                           time: 109, text: 'Chicken strips and french fries at the Pawtisierie', singer: 'tim' },
-    {                           time: 113, text: 'With that big smile spread across your face',       singer: 'tim' },
-    {                   time: 117, text: 'Charlotte\'s where we started our memories',                 singer: 'hannah' },
-    {                   time: 120, text: 'And it\'s always the place we call home',                    singer: 'hannah' },
-    {                   time: 124, text: 'Well, we stroll Dilworth streets, with our Puhhup at our feet', singer: 'hannah' },
-    {                   time: 128, text: 'Honey, I\'d say that our life here together is sweet',        singer: 'hannah' },
-    { section: 'Chorus',       time: 134, text: 'Oh baby, I\'m gonna love you forever',              singer: 'both' },
-    {                           time: 138, text: 'Forever and ever, agrim',                           singer: 'both' },
-    {                           time: 141, text: 'As long as ole grims sit and talk about their hunger', singer: 'both' },
-    {                           time: 145, text: 'As long as ole grims sit and talk about ole grims', singer: 'both' },
-    {                           time: 149, text: 'If you wonder how long I\'ll be faithful',          singer: 'both' },
-    {                           time: 153, text: 'Well, just listen to how this song ends',           singer: 'both' },
-    {                           time: 157, text: 'I\'m gonna love you forever and ever',              singer: 'both' },
-    {                           time: 161, text: 'Forever and ever, agrim',                           singer: 'both' },
-    { section: 'Outro',        time: 168, text: 'I\'m gonna love you forever and ever...',            singer: 'hannah' },
-    {                           time: 172, text: 'Forever and ever, forever and ever...',             singer: 'tim' },
-    {                           time: 176, text: 'Honey',                           singer: 'Hannah' },
-    {                           time: 176, text: 'Grimmie',                           singer: 'Tim' },
-    {                           time: 176, text: 'My sweet grim',                           singer: 'Both' },
-    {                           time: 180, text: 'Forever and ever... agrim',                         singer: 'both' },
-    {                            time: 180, text: 'Forever and ever... agrim',                         singer: 'both' },
-  ];
+const duetLyrics = [
+  {
+    section: "Spoken Intro",
+    time: 1,
+    text: "\"This one's for my Grimbus\"",
+    type: "spoken",
+    singer: "hannah"
+  },
+  {
+    time: 4,
+    text: "\"My Sweet Baby Grim — let's do this\"",
+    type: "spoken",
+    singer: "tim"
+  },
+
+  {
+    section: "Verse 1",
+    time: 15,
+    text: "You may call me Grimbus Grombus",
+    singer: "hannah"
+  },
+  {
+    time: 18,
+    text: "Your Grim or your Sweet Baby Girl",
+    singer: "hannah"
+  },
+  {
+    time: 22,
+    text: "Grimmie Mungbus Bungus",
+    singer: "hannah"
+  },
+  {
+    time: 25,
+    text: "Every single name means the world",
+    singer: "hannah"
+  },
+  {
+    time: 30,
+    text: "With our Puhhup laid out on the sofa",
+    singer: "tim"
+  },
+  {
+    time: 33,
+    text: "Ticklin' pink bellies all night",
+    singer: "tim"
+  },
+  {
+    time: 37,
+    text: "Watchin' our shows with your head on my shoulder",
+    singer: "tim"
+  },
+  {
+    time: 40,
+    text: "Baby, everything feels so right",
+    singer: "tim"
+  },
+
+  {
+    section: "Chorus",
+    time: 46,
+    text: "Oh baby, I'm gonna love you forever",
+    singer: "both"
+  },
+  {
+    time: 50,
+    text: "Forever and ever, agrim",
+    singer: "both"
+  },
+  {
+    time: 53,
+    text: "As long as ole grims sit and talk about their hunger",
+    singer: "both"
+  },
+  {
+    time: 57,
+    text: "As long as ole grims sit and talk about ole grims",
+    singer: "both"
+  },
+  {
+    time: 61,
+    text: "If you wonder how long we'll be together",
+    singer: "both"
+  },
+  {
+    time: 65,
+    text: "Just look at those pink bellies again",
+    note: "Point to pink belly",
+    singer: "both"
+  },
+  {
+    time: 68,
+    text: "We're gonna love one another forever",
+    singer: "both"
+  },
+  {
+    time: 72,
+    text: "Forever and ever, agrim",
+    singer: "both"
+  },
+
+  {
+    section: "Verse 2",
+    time: 102,
+    text: "They say brunch is the best way to start things",
+    singer: "tim"
+  },
+  {
+    time: 105,
+    text: "West Kept Secret, you know that's our place",
+    singer: "tim"
+  },
+  {
+    time: 109,
+    text: "Chicken strips and fries at the Pawtisierie",
+    singer: "tim"
+  },
+  {
+    time: 113,
+    text: "With that big smile spread across your face",
+    singer: "tim"
+  },
+  {
+    time: 117,
+    text: "Charlotte's where we started our memories",
+    singer: "hannah"
+  },
+  {
+    time: 120,
+    text: "And it's always the place we call home",
+    singer: "hannah"
+  },
+  {
+    time: 124,
+    text: "Well, we stroll Dilworth streets, with our Puhhup at our feet",
+    singer: "hannah"
+  },
+  {
+    time: 128,
+    text: "Honey, I'd say that our life here together is sweet",
+    singer: "hannah"
+  },
+
+  {
+    section: "Chorus",
+    time: 134,
+    text: "Oh baby, I'm gonna love you forever",
+    singer: "both"
+  },
+  {
+    time: 138,
+    text: "Forever and ever, agrim",
+    singer: "both"
+  },
+  {
+    time: 141,
+    text: "As long as ole grims sit and talk about their hunger",
+    singer: "both"
+  },
+  {
+    time: 145,
+    text: "As long as ole grims sit and talk about ole grims",
+    singer: "both"
+  },
+  {
+    time: 149,
+    text: "If you wonder how long we'll be together",
+    singer: "both"
+  },
+  {
+    time: 153,
+    text: "Well, just listen to how this song ends",
+    singer: "both"
+  },
+  {
+    time: 157,
+    text: "We're gonna love one another forever",
+    singer: "both"
+  },
+  {
+    time: 161,
+    text: "Forever and ever, agrim",
+    singer: "both"
+  },
+
+  {
+    section: "Outro",
+    time: 168,
+    text: "We're gonna love one another forever...",
+    singer: "hannah"
+  },
+  {
+    time: 172,
+    text: "Forever and ever, forever and ever...",
+    singer: "tim"
+  },
+  {
+    time: 176,
+    text: "Honey...",
+    singer: "hannah"
+  },
+  {
+    time: 177.25,
+    text: "Grimmie...",
+    singer: "tim"
+  },
+  {
+    time: 178.5,
+    text: "My sweet Grim...",
+    singer: "both"
+  },
+  {
+    time: 180,
+    text: "Forever and ever... agrim",
+    singer: "both"
+  }
+];
 
   // --- BUILD LYRIC HTML ---
   function buildLyrics(data, containerId, showBadge) {
