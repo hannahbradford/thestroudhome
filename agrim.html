@@ -524,7 +524,7 @@ const duetLyrics = [
     document.querySelectorAll('.v-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('legend').style.display = v === 'duet' ? 'flex' : 'none';
-    audio.src = v === 'solo' ? 'agrim-solo.mp3' : 'agrim-duet.mp3';
+    audio.src = v === 'solo' ? 'agrim-solo.mp3' : 'DuetAgrim.m4a';
     audio.load();
     audio.currentTime = 0;
   }
